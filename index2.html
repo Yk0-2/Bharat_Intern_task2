@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature convertor</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        background-image: linear-gradient(orangered, orange);
+        text-align: center;
+        font-size: 50px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-style: italic;
+    }
+
+    .main {
+        margin: 40px;
+        margin-bottom: 5px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: row;
+
+    }
+
+    img {
+        margin-top: 80px;
+        border-radius: 10px;
+        box-shadow: 5px 5px;
+
+
+    }
+
+    .left,
+    .right {
+        height: 500px;
+        width: 500px;
+
+
+    }
+
+    .inp {
+        height: 40px;
+        width: 250px;
+        margin: 20px;
+        text-align: center;
+        background-image: linear-gradient(orangered, orange);
+
+        border: 3px solid black;
+        border-radius: 10px;
+        padding: 5px;
+        font-size: 20px;
+        font-style: italic;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+    }
+
+    label {
+        font-size: 20px;
+        font-style: italic;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        color: black;
+        text-decoration: underline;
+    }
+
+    button {
+        height: 50px;
+        width: 250px;
+        background-image: linear-gradient(blue, skyblue);
+        border: 3px solid black;
+        color: black;
+        font-size: 30px;
+        text-decoration: underline;
+        border-radius: 10px;
+        margin-left: 30px;
+        font-style: italic;
+
+
+    }
+</style>
+
+<body>
+    <h1>Temperature convertor</h1>
+    <div class="main">
+        <div class="left"><img src="temperature.png" alt="temp"></div>
+        <div class="right">
+            <label for="cel">Celsius</label><br>
+            <input type="number" value="0" id="cel" class="inp">
+            <br>
+            <label for="fah">Farhenheit</label><br>
+            <input type="number" value="32" id="fah" class="inp">
+            <br>
+            <label for="kel">Kelvin</label><br>
+            <input type="number" value="273.15" id="kel" class="inp">
+            <br>
+            <br><br>
+            <button class="reset" onclick="reset()">
+                Reset
+            </button>
+        </div><br>
+
+
+    </div>
+
+
+
+
+</body>
+<script>
+    var cel = document.getElementById("cel")
+    var fah = document.getElementById("fah")
+    var kel = document.getElementById("kel")
+
+    fah.addEventListener('input', function () {
+        let f = this.value;
+        let c = (f - 32) * 5 / 9;
+        if (!Number.isInteger(c)) {
+            c = c.toFixed(4)
+        }
+        cel.value = c;
+
+        let k = (f - 32) * 5 / 9 + 273.15
+        if (!Number.isInteger(k)) {
+            k = k.toFixed(4)
+        }
+        kel.value = k;
+    });
+    kel.addEventListener('input', function () {
+        let k = this.value;
+        let c = k - 273.15
+        if (!Number.isInteger(c)) {
+            c = c.toFixed(4)
+        }
+        cel.value = c;
+        let f = (k - 273.15) * 9 / 5 + 32
+        if (!Number.isInteger(f)) {
+            f = f.toFixed(4)
+        }
+        fah.value = f;
+
+    });
+    cel.addEventListener('input', function () {
+        let c = this.value;
+        let k = parseInt(273.15) + parseInt(c);
+
+        kel.value = k;
+
+        let f = (c * 9 / 5) + 32;
+        if (!Number.isInteger(f)) {
+            f = f.toFixed(4)
+        }
+        fah.value = f
+
+
+    });
+    function reset() {
+        location.reload()
+    }
+
+
+</script>
+
+</html>
